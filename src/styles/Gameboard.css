@@ -1,0 +1,101 @@
+.main .gameboard {
+  border-radius: 0.4rem;
+  width: 50rem;
+  height: 50rem;
+  display: grid;
+  grid-template-rows: repeat(10, 1fr);
+  counter-reset: row-counter;
+}
+
+.main .gameboard .row {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  counter-reset: col-counter;
+  position: relative;
+}
+
+.main .gameboard .row::before {
+  counter-increment: row-counter;
+  content: counter(row-counter, upper-alpha);
+  position: absolute;
+  font-size: 2.5rem;
+  color: hsla(210, 50%, 30%, 0.9);
+  left: -4rem;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  pointer-events: none;
+}
+
+.main .gameboard .row .col {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.main .gameboard .row:first-child .col::before {
+  counter-increment: col-counter;
+  content: counter(col-counter);
+  position: absolute;
+  font-size: 2.5rem;
+  color: hsla(210, 50%, 30%, 0.9);
+  cursor: default;
+  top: -5rem;
+  text-align: center;
+  z-index: 20;
+  pointer-events: none;
+}
+
+.main .gameboard .row:nth-child(even) .col:nth-child(even) {
+  background-color: var(--color-ebony-l8);
+}
+.main .gameboard .row:nth-child(even) .col:nth-child(odd) {
+  background-color: var(--color-ebony-l10);
+}
+
+.main .gameboard .row:nth-child(odd) .col:nth-child(even) {
+  background-color: var(--color-ebony-l12);
+}
+
+.main .gameboard .row:nth-child(odd) .col:nth-child(odd) {
+  background-color: var(--color-ebony-l14);
+}
+
+.main .gameboard .hit {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background-color: hsla(335, 70%, 42%, 0.9);
+  pointer-events: none;
+  transition: all 0.2s;
+}
+
+.main .gameboard .miss {
+  width: 90%;
+  height: 90%;
+  border-radius: 50%;
+  background-color: hsla(210, 50%, 30%, 0.9);
+  cursor: not-allowed;
+  pointer-events: none;
+  transition: all 0.2s;
+}
+
+.main .computer-board {
+  border: 0.4rem solid var(--color-red-violet-l46);
+}
+
+.main .player-board {
+  border: 0.4rem solid var(--color-caribbean-green-l39);
+}
+
+.main .player-board .ship {
+  width: 90%;
+  height: 90%;
+  border-radius: 0.4rem;
+  background-color: var(--color-caribbean-green-l44);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none;
+}
